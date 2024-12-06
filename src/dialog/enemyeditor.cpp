@@ -401,11 +401,8 @@ void EnemyEditorDialog::loadEnemyType()
 	l_bflag[13] = "Ignore Sideview Ladders/Platforms";
 	l_bflag[14] = "Move Off-Grid (WIP)";
 	l_bflag[15] = "Render Cloaked Instead of VISIBLE";
-
+	//we should problably move this elsewhere as every enemy has it.
 	l_attribute[12] = "This Item Dispels Invisibility:";
-	l_attribute[14] = "Transform Effect:";
-	l_attribute[15] = "Transform Into Enemy:";
-	l_attribute[16] = "Transform Inv Time:";
 	
 	switch(local_guyref.family)
 	{

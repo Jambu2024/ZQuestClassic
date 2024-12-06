@@ -11517,7 +11517,12 @@ int32_t writeguys(PACKFILE *f, zquestheader *Header)
 					new_return(116 + WPNSPR_MAX + q);
 			}
 			if (!p_putc(guysbuf[i].specialsfx, f))
-				new_return(126)
+				new_return(118);
+			for (int q = 0; q < 3; ++q)
+			{
+				if (!p_iputl(guysbuf[i].transform[q], f))
+					new_return(119);
+			}
 		}
 		
 		if(writecycle==0)
