@@ -561,6 +561,7 @@ enemy::enemy(zfix X,zfix Y,int32_t Id,int32_t Clk) : sprite()
 	memcpy(burnsprs, d->burnsprs, sizeof(d->burnsprs));
 	memcpy(light_rads, d->light_rads, sizeof(d->light_rads));
 	specialsfx = d->specialsfx;
+	memcpy(transform, d->transform, sizeof(d->transform));
 }
 
 int32_t enemy::getScriptUID() { return script_UID; }
@@ -2271,7 +2272,7 @@ int32_t enemy::defendNew(int32_t wpnId, int32_t *power, int32_t edef, byte unblo
 	}
 	
 	int32_t new_id = id;
-	int32_t effect_type = dmisc15;
+	int32_t effect_type = transform[0];
 	int32_t delay_timer = 90;
 	enemy *gleeok = NULL;
 	enemy *ptra = NULL;
@@ -2282,10 +2283,10 @@ int32_t enemy::defendNew(int32_t wpnId, int32_t *power, int32_t edef, byte unblo
 		case edREPLACE:
 		{
 			sclk = 0;
-			if ( dmisc16 > 0 ) new_id = dmisc16;
+			if (transform[1] > 0 ) new_id = transform[1];
 			else new_id = id+1; 
 			if ( new_id > 511 ) new_id = id; //Sanity bound to legal enemy IDs.
-			if ( dmisc17 > 0 ) delay_timer = dmisc17;
+			if (transform[2] > 0 ) delay_timer = transform[2];
 			//if ( dmisc18 > 0 ) dummy_wpn_id = dmisc18;
 			
 			//Z_scripterrlog("new id is %d\n", new_id);

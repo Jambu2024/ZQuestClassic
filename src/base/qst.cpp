@@ -14960,6 +14960,24 @@ int32_t readguys(PACKFILE *f, zquestheader *Header)
 				if (!p_getc(&(tempguy.specialsfx), f))
 					return qe_invalid;
 			}
+			if (guyversion < 54)
+			{
+				for (int q = 0; q < 3; ++q)
+				{
+					if (tempguy.family == eeKEESE || tempguy.family == eePEAHAT || tempguy.family == eeGHINI)
+						tempguy.transform[q] = 0;
+					else
+						tempguy.transform[q] = tempguy.attributes[14+q];
+				}
+			}
+			else
+			{
+				for (int q = 0; q < 3; ++q)
+				{
+					if (!p_igetl(&(tempguy.transform[q]), f))
+						return qe_invalid;
+				}
+			}
 
 			if(loading_tileset_flags & TILESET_CLEARSCRIPTS)
 			{
