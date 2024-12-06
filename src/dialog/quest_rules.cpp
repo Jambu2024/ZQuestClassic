@@ -964,7 +964,9 @@ static GUI::ListData compatRulesList
 	{ "Broken Pushblock Top-Half Solids", qr_BROKEN_PUSHBLOCK_TOP_HALF_SOLIDS,
 		"If enabled, blocks will ignore the top half combo solidity when being pushed." },
 	{ "Pushblock Flag Cloning", qr_BROKEN_PUSHBLOCK_FLAG_CLONING,
-		"If enabled, pushblocks will clone any non-'Push' placed flag (only numbered 59 or higher, except `Push (Generic)` which does all) on them to every square they stop in." }
+		"If enabled, pushblocks will clone any non-'Push' placed flag (only numbered 59 or higher, except `Push (Generic)` which does all) on them to every square they stop in." },
+	{ "Enemies use Attributes for Transform", qr_OLD_TRANSFORM_ATTRIBUTES,
+			"If enabled, enemies will use attributes 15, 16, and 17 for their transform variables."}
 };
 
 static GUI::ListData enemiesRulesList

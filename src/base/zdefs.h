@@ -150,7 +150,7 @@ enum {ENC_METHOD_192B104=0, ENC_METHOD_192B105, ENC_METHOD_192B185, ENC_METHOD_2
 #define V_ICONS            10 //Game Icons
 #define V_GRAPHICSPACK     1
 #define V_INITDATA        39
-#define V_GUYS            53
+#define V_GUYS            54
 #define V_MIDIS            4
 #define V_CHEATS           1
 #define V_SAVEGAME        42
@@ -162,7 +162,7 @@ enum {ENC_METHOD_192B104=0, ENC_METHOD_192B105, ENC_METHOD_192B185, ENC_METHOD_2
 #define V_SFX              8
 #define V_FAVORITES        4
 
-#define V_COMPATRULE       72
+#define V_COMPATRULE       73
 #define V_ZINFO            4
 
 //= V_SHOPS is under V_MISC
@@ -1350,6 +1350,8 @@ struct guydata
 	byte burnsprs[WPNSPR_MAX];
 	byte light_rads[WPNSPR_MAX];
 	byte specialsfx;
+	// effect tab
+	int32_t transform[3];
 
 #define ENEMY_FLAG1   0x01
 #define ENEMY_FLAG2   0x02

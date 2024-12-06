@@ -3487,6 +3487,8 @@ int32_t readrules(PACKFILE *f, zquestheader *Header)
 		set_qr(qr_BROKEN_PUSHBLOCK_TOP_HALF_SOLIDS, 1);
 	if (compatrule_version < 72)
 		set_qr(qr_BROKEN_PUSHBLOCK_FLAG_CLONING, 1);
+	if (compatrule_version < 73)
+		set_qr(qr_OLD_TRANSFORM_ATTRIBUTES, 1);
 	
 	set_qr(qr_ANIMATECUSTOMWEAPONS,0);
 	if (s_version < 16)
@@ -14959,6 +14961,24 @@ int32_t readguys(PACKFILE *f, zquestheader *Header)
 			{
 				if (!p_getc(&(tempguy.specialsfx), f))
 					return qe_invalid;
+			}
+			if (guyversion < 54)
+			{
+				for (int q = 0; q < 3; ++q)
+				{
+					if (tempguy.family == eeKEESE || tempguy.family == eePEAHAT || tempguy.family == eeGHINI)
+						tempguy.transform[q] = 0;
+					else
+						tempguy.transform[q] = tempguy.attributes[14+q];
+				}
+			}
+			else
+			{
+				for (int q = 0; q < 3; ++q)
+				{
+					if (!p_igetl(&(tempguy.transform[q]), f))
+						return qe_invalid;
+				}
 			}
 
 			if(loading_tileset_flags & TILESET_CLEARSCRIPTS)
